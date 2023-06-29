@@ -1,0 +1,85 @@
+
+<style>
+    a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+     }
+     .order-sucess{
+        color: green;
+        font-weight: bold;
+     }
+     .total-amount{
+        color: green;
+        font-weight: bold;
+     }
+     .payment-mode{
+        color: rgb(186, 100, 100);
+     }
+     .success{
+        padding-top: 7%;
+     }
+</style>
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+        <span class="order-sucess text-center">
+            <img src="/images/success-icon-10-300x300.png" style="max-width:150px; max-height: 150px;"> 
+        </span>
+        </div>
+        <div class="row">
+                <div class="card-body text-center mt-5">
+                <h5 class="card-title">THANK YOU FOR YOUR PURCHASE </h5>
+                <p class="card-text">Thank you for shopping please feel free to contact if you have any isues</p>
+                <a href="/" class="btn btn-success">continue shopping</a>
+               </div>
+        </div>
+    </div>
+
+{{!-- 
+    <div class="container">
+<hr>
+    </div> --}}
+
+<section>
+    <div class="container mt-4">
+    <section class="content-main">
+                    <div class="table-responsive">
+                        <table  class="table  table-success table-striped">
+                            {{!-- <thead>
+                                <tr class="text-center ">
+                                    <th scope="col">name</th>
+                                    <th scope="col">Delivery Address</th>
+                                    <th scope="col">Payment method</th>
+                                    <th scope="col">status</th>
+                                    <th scope="col">Bill Amount</th>
+                                </tr>
+                            </thead> --}}
+                            <tbody> 
+                                <tr class="text-center">
+                                    <td style="vertical-align: middle;"> <strong>{{deliveryDetails.deliveryDetails.firstname}} {{deliveryDetails.deliveryDetails.lastname}}</strong></td>
+                                   <td style="vertical-align: middle;">
+                                   
+                                    <strong>{{deliveryDetails.deliveryDetails.address}},<br>
+                                    {{deliveryDetails.deliveryDetails.place}}, {{deliveryDetails.deliveryDetails.city}}<br>
+                                    {{deliveryDetails.deliveryDetails.district}}, {{deliveryDetails.deliveryDetails.state}}-{{deliveryDetails.deliveryDetails.pincode}}</strong>
+                                   </td>
+                                   <td style="vertical-align: middle;"><span class="payment-mode"><strong>{{deliveryDetails.paymentMethode}}</strong></span></td>
+                                  
+                                   <td style="vertical-align: middle;">{{deliveryDetails.paymentStatus}} </td>
+                                   <td style="vertical-align: middle;"><span class="total-amount">{{deliveryDetails.totalamount}}</span></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+        </section>
+</div>
+
+</section>
+
+
+
+</body>

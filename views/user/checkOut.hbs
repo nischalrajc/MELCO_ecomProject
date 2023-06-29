@@ -1,0 +1,451 @@
+<link rel="stylesheet" href="/assets/css/main.css">
+
+
+<style>
+    a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+     }
+     .btn-delete{
+        border: none;
+        background-color: white;
+    }
+    .btn-delete:hover {
+      color: rgb(176, 41, 41); 
+      cursor: pointer;
+    }
+    .input-style {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #000; /* Replace with your desired color */
+}
+
+   .btn-coupon{
+        background-color: rgb(65, 151, 142);
+        border-color:rgb(65, 151, 142) ;
+        
+    }
+    .input-container {
+  position: relative;
+}
+
+.input-container .btn-clear {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.coupon{
+  color: rgb(141, 101, 64);
+  font-weight: bold;
+}
+
+.table-container {
+  max-height: 150px; 
+  overflow-y: auto; 
+}
+
+
+</style>
+<div class="sticky-navbar ">
+<header class="header1">
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container-fluid ">
+            <a class="navbar-brand " href="#">
+                <img src="/images/Screenshot 2023-05-13 113209.png" alt="logo" class="logo-img" width="140" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-5" href="/cart"><i class="bi bi-bag-fill me-1"></i>Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-5" href="#"><i class="bi bi-heart-fill me-1"></i>Wishlist</a>
+                    </li>
+                    <li class="nav-item me-lg-5">
+                        {{#if logedin}}
+                        <a class="nav-link" href="/profile"><i class="bi bi-person-fill"></i>Profile</a>
+                        {{else}}
+                        <a class="nav-link" href="/login"><i class="bi bi-box-arrow-in-right me-1"></i>Login/Signup</a>
+                        {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+</div>
+
+<div class="container">
+  <div class="row mt-4">
+                    <div class="col-lg-6 mb-sm-15">
+                        <div class="toggle_info">
+                            <span><i class="fi-rs-user "></i><span class="text-muted">Add another address?</span> <a href="#loginform" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">Click here</a></span>
+                        </div>
+                        <div class="panel-collapse collapse login_form" id="loginform">
+                            <div class="panel-body">
+                               <div class="col-lg-8 col-md-8 col-sm-7 mt-2">
+                                <form action="/insertAddress" method="post">
+
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example1" name="firstname" class="form-control" />
+              <label class="form-label"  for="form7Example1">First name</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2"  name="lastname" class="form-control" />
+              <label class="form-label" for="form7Example2">Last name</label>
+            </div>
+          </div>
+        </div>
+
+<!-- addres input -->
+        <div class="form-outline mb-4">
+          <textarea class="form-control" name="address" id="form7Example7" rows="4"></textarea>
+          <label class="form-label"  for="form7Example7">Address</label>
+        </div>
+
+<!-- 2 column grid layout with place and street -->
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example1" name="place" class="form-control" />
+              <label class="form-label"  for="form7Example1">Place</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2" name="city" class="form-control" />
+              <label class="form-label"  for="form7Example2">City </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 column grid layout with district and state -->
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example1" name="district" class="form-control" />
+              <label class="form-label"  for="form7Example1">District</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2" name="state" class="form-control" />
+              <label class="form-label"  for="form7Example2">State </label>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 2 column grid layout with pincode and phonenumber -->
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="number" id="form7Example1" name="pincode" class="form-control" />
+              <label class="form-label"  for="form7Example1">Pincode</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2" name="phone" class="form-control" />
+              <label class="form-label"  for="form7Example2">Phone</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+                                        <button class="btn btn-md mt-2" type="submit">submit</button>
+                                    </div>
+        </form>
+  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+
+<div class="container">
+<form id="form" method=""  class="row g-3"> 
+
+<div class="row mt-4">
+  <div class="col">
+   <form method="post">
+    <div class="card px-3 py-3">
+      <div class="card-head"><strong><h5> Choose Delivery Address:</h5></strong> </div>
+
+    
+                                  {{#each address.address}}
+                                   <div class="form-check mt-2">
+  <input class="form-check-input" type="radio" name="addressId" id="exampleRadios1" value="{{this._id}}" checked>
+  <label class="form-check-label" for="exampleRadios1">
+    {{this.firstname}} {{this.lastname}}<br>
+          {{this.address}},<br>
+          {{this.place}}, {{this.city}}<br>
+          {{this.district}}, {{this.state}}-{{this.pincode}}
+          <div>
+        <a href="/editAddress/{{this._id}}" class="btn-small">Edit </a><a onclick="deleteAddress('{{this._id}}')" class="btn-delete ms-3"><i class="bi bi-trash3"></i></a>
+          </div>
+
+  </label>
+</div>
+{{/each}}
+</div>
+     </form>
+  </div>
+  <div class="col-lg-6 col-md-6">
+    <div class="card px-3 py-3">
+      <div class="payment_method">
+                                <div class="mb-25">
+                                    <h5>Payment</h5>
+                                </div>
+                                <div class="payment_option">
+    <div class="custome-radio mt-2">
+      <input class="form-check-input" required="" type="radio" name="payment_methode" id="exampleRadios3" value="Razor Pay" checked>
+      <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Razor Pay</label>
+    </div>
+    <div class="custome-radio mt-2">
+      <input class="form-check-input" required="" type="radio" name="payment_methode" id="exampleRadios4" value="Paypal">
+      <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Paypal</label>
+    </div>
+    <div class="custome-radio mt-2">
+      <input class="form-check-input" required="" type="radio" name="payment_methode" id="exampleRadios5" value="Cash On Delivery">
+      <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Cash On Delivery</label>
+    </div>
+    <div class="custome-radio mt-2">
+      <input class="form-check-input" required="" type="radio" name="payment_methode" id="exampleRadios6" value="wallet">
+      <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse" data-target="#wallet" aria-controls="wallet">Wallet : Rs.{{walletamount.amount}}</label>
+    </div>
+  </div>
+    </div>
+    </div>
+  </div>
+   
+
+
+<div class="col-lg-6 col-md-6 col-sm-6 mb-4">
+<div class="card mb-4">
+    <div class="card-header py-3">
+      <h5 class="mb-0">Summary</h5>
+    </div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <div class="row">
+          <details>
+  <summary>Products</summary>
+  <div class="table-container">
+    <table>
+      <tbody>
+        {{#each cartDetails}}
+          <tr>
+            <td style="vertical-align: middle;"><img src="/uploads/{{this.productInfo.images.[0]}}" style="max-width:50px; max-height: 50px;"></td>
+            <td style="vertical-align: middle;padding-left:10px">{{this.productInfo.productname}}<br>{{this.quantity}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</details>
+        </div>
+        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+          <div>
+            <strong>Total amount</strong>
+            <strong>
+              <p class="mb-0">(including TAX)</p>
+            </strong>
+          </div>
+          <span><strong>Rs.{{cartTotal}}</strong></span>
+        </li>
+      </ul>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" >
+        Make purchase
+      </a>
+    </div>
+  </div>
+
+</div>
+
+ <div class="col-lg-5">
+  <form id="couponForm" >
+    <div class="card">
+      <div class="card-head">
+        <div class="div mt-2 ms-2">
+          Available Coupons :{{#each coupon}} <span class="coupon"><strong>{{this.couponCode}}</strong>,</span>{{/each}}
+        </div>
+      </div>
+      <div class="card-body">
+        <div><h6>Apply Coupon</h6></div>
+        <div class="mt-2">
+         <input type="text"  name="couponCode"  class="col-10 input-style">  
+         <button type="button" id="btn-clear" class="btn-clear"><i class="bi bi-x-lg"></i></button>
+         </div>
+          <button type="submit" class="btn-coupon mt-2">Apply</button>
+        </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
+
+</form>
+
+
+</div>
+
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="/javascript/deleteAddress.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      $(document).ready(function() {
+  $('.btn-clear').click(function() {
+    $('input[name="couponCode"]').val(''); // Reset the input field value
+  });
+});
+    </script>
+
+
+  <script>
+
+    $("#couponForm").submit(function(event) {
+      event.preventDefault();
+
+      $.ajax({
+        url: '/applyCoupon',
+        type: "POST",
+         data: $("#couponForm").serialize(),
+        success: function(response) {
+          console.log(response)
+          if(response.status){
+            location.reload()
+          }else if(response.minLimit){
+            Swal.fire({
+              text: `Purchase for a minimum amount of ${response.minimumPurchase}!`
+            })
+          }else{
+            Swal.fire({
+              text: 'Coupon doesnot exist,Input a valid coupon'
+            })
+          }
+          
+        },
+        error: function(xhr, status, error) {
+          console.log("AJAX request failed");
+          console.log(xhr.responseText);
+        }
+      });
+    });
+
+</script>
+
+
+
+
+<script>
+       $('#form').submit((e)=>{
+        console.log("submitting to place order");
+        e.preventDefault()
+        $.ajax({
+            url:'/checkout',
+            type:'POST',
+            data:$("form").serialize(),
+            success:(response)=>{
+              console.log(response)
+                if(response.COD || response.wallet==true){   
+                   location.href='/success'
+                }else if(response. approvalUrl){
+                  console.log("sucesss")
+                  window.location.href = response.approvalUrl;
+                  
+                }else if(response.wallet==false){
+                         Swal.fire('Insufficient Wallet Amount')
+                }else{
+                    razorpayPayment(response.order)
+                }
+            }
+
+        })
+    })
+
+
+   function razorpayPayment(order){
+  
+    var options = {
+        "key": "rzp_test_8ib5wDK4ebl9Uu", // Enter the Key ID generated from the Dashboard
+        "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        "name": "Melco", //your business name
+        "description": "Test Transaction",
+        "image": "https://example.com/your_logo",
+        "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "handler": function (response){
+           // alert(response.razorpay_payment_id);
+            //alert(response.razorpay_order_id);
+           // alert(response.razorpay_signature) 
+
+            verifyPayment(response,order)
+        },
+        "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+            "name": "Gaurav Kumar", //your customer's name
+            "email": "gaurav.kumar@example.com", 
+            "contact": "9000090000"  //Provide the customer's phone number for better conversion rates 
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+   };
+        var rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response) {
+                //  alert(response.error.code);
+                //  alert(response.error.description);
+                //  alert(response.error.source);
+                //  alert(response.error.step);
+                //  alert(response.error.reason);
+                //  alert(response.error.metadata.order_id);
+                //  alert(response.error.metadata.payment_id);
+                verifyPayment(response, order)
+                });
+
+                rzp1.open();
+
+
+             
+   }
+   
+   function verifyPayment(payment,order){
+      $.ajax({
+        url:'/verify-payment',
+        data:{
+          payment,
+          order
+        },
+        type:'post',
+        success:(response)=>{
+          if(response.status){
+            location.href='/success'
+          }else{
+            console.log("Payment Failed")
+          }
+        }
+      })
+   }
+
+</script>
+
+

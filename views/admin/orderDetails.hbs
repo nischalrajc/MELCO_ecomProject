@@ -1,0 +1,64 @@
+<style>
+
+    #deliveredAddress{
+        background-color: rgba(135, 160, 220, 0.174);
+    }
+    
+</style>
+    
+
+<main class="main-wrap">
+    <div class="container">
+            <div class="content-header">
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Product</th>
+                                    {{!-- <th scope="col">Description</th> --}}
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each deliveryProducts.productInfo}}
+                                <tr class="text-center">
+                                   <td><img src="/uploads/{{this.Image.[0]}}" style="max-width:50px; max-height: 80px;"></td>
+                                    <td style="vertical-align: middle;">{{this.productname}}</td>
+                                    {{!-- <td style="vertical-align: middle;">{{this._doc.description}}</td> --}}
+                                    <td style="vertical-align: middle;">
+                                        {{this.quantity}}
+                                    </td>
+                                    <td style="vertical-align: middle;">{{multiply this.currentPrice this.quantity}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="deliveredAddress" class="card">
+                <div class="card-body"><span ><h5 class="to">Delivered To :</h5></span>{{deliveryProducts.deliveryDetails.firstname}} {{deliveryProducts.deliveryDetails.lastname}},{{deliveryProducts.deliveryDetails.address}},{{deliveryProducts.deliveryDetails.place}},{{deliveryProducts.deliveryDetails.city}},{{deliveryProducts.deliveryDetails.disrtict}}{{deliveryProducts.deliveryDetails.state}},{{deliveryProducts.deliveryDetails.phone}}</div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div id="deliveredAddress" class="card">
+                <div class="card-body">Total Bill Amount: {{deliveryProducts.totalamount}}<br>Payment Mode: {{deliveryProducts.paymentMethode}}<br>Order Date: {{dateFormatter deliveryProducts.orderDate "YYYY-MM-DD"}}</div>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+
+
+</main>

@@ -1,0 +1,87 @@
+<style>
+    .trash{
+        border: none;
+        background-color: white;
+    }
+    #existingCoupon{
+        background-color: rgb(65, 151, 142);
+    }
+    h6{
+        color: white;
+    }
+    .edit-coupon{
+        color: black;
+    }
+</style>
+
+<main class="main-wrap">
+    <section class="content-main">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form action="/admin/add_coupons" method="post">
+                            <div class="mb-2">
+                                <h3>Add Coupons</h3>
+                            </div>
+                            <div class="mb-4">
+                                <label for="coupon_code" class="form-label">Coupon Code</label>
+                                <input type="text" placeholder="Type here" class="form-control" id="coupon_code" name="couponCode" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="minimum_purchase" class="form-label">Minimum Limit</label>
+                                <input type="number" placeholder="Type here" class="form-control" id="minimum_amount" name="minLimit" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="dicount_percentage" class="form-label">Discount Percentage</label>
+                                <input type="number" placeholder="Type here" class="form-control" id="dicount_percentage" name="discountPercentage" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="expiry_date" class="form-label">Expiry Date</label>
+                                <input type="date" class="form-control" id="expiry_date" name="expireDate" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-md rounded font-sm hover-up">Add Coupons</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{#if coupons}}
+            <div class="col-lg-4">
+                <div id="existingCoupon" class="card">
+                    <div class="card-body">
+                        <div class="mb-2">
+                                <h6>Already Existing Coupons</h6>
+                                <ul class="list-group mt-3">
+                                    {{#each coupons}}
+                                        <li class="list-group-item mb-2 custom-list-group-item">
+                                            <div class="row align-items-center">
+                                                <div class="col-1"><i class="bi bi-star-fill"></i></div>
+                                                <div class="col-7">{{this.couponCode}}</div>
+                                                <div class="col-1"> <a href="/admin/editCoupon/{{this._id}}" class="edit-coupon"><i class="bi bi-pencil-square"></i></a></div>
+                                                <div class="col-2">
+                                                    <button onclick="deleteCoupon('{{this._id}}')" class="trash"><i class="bi bi-trash3"></i></button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </section>
+</main>
+
+
+
+<script src="/javascript/deleteCoupon.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

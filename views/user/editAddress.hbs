@@ -1,0 +1,84 @@
+<style>
+    a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+     }
+</style>
+
+<div class="container vh-100">
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <form action="/editAddress/{{address._id}}" method="post" class="row g-3  w-100">
+      <div class="col">
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" value="{{address.firstname}}" id="form7Example1" name="firstname" class="form-control" />
+              <label class="form-label"  for="form7Example1">First name</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2" value="{{address.lastname}}" name="lastname" class="form-control" />
+              <label class="form-label" for="form7Example2">Last name</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-outline mb-4">
+          <textarea class="form-control"  name="address" id="form7Example7" rows="4"> {{address.address}}</textarea>
+          <label class="form-label" for="form7Example7">Address</label>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example1"  value="{{address.place}}" name="place" class="form-control" />
+              <label class="form-label" for="form7Example1">Place</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2"  value="{{address.city}}" name="city" class="form-control" />
+              <label class="form-label" for="form7Example2">City</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example1"  value="{{address.district}}" name="district" class="form-control" />
+              <label class="form-label" for="form7Example1">District</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2"  value="{{address.state}}" name="state" class="form-control" />
+              <label class="form-label" for="form7Example2">State</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="number" id="form7Example1"  value="{{address.pincode}}" name="pincode" class="form-control" />
+              <label class="form-label" for="form7Example1">Pincode</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2" name="phone"  value="{{address.phone}}" class="form-control" />
+              <label class="form-label" for="form7Example2">Phone</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

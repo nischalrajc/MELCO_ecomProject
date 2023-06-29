@@ -1,0 +1,169 @@
+
+<style>
+    a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+     }
+  
+     .offer-price{
+        color: green;
+     }
+     .table-head{
+      font-size: 16px;
+      font-weight: bold;
+     }
+
+     #minusButton{
+      font-size: 20px;
+      border: none;
+      background-color: white;
+     }
+     #plusButton{
+      font-size: 20px;
+      border: none;
+      background-color: white;
+     }
+     .stock{
+      font-size: 15px;
+     }
+     .remove-button{
+      border: none;
+      background: none;
+      font-size: 18px;
+      color: black;
+     }
+     .remove-button:hover {
+      color: red; 
+      cursor: pointer;
+      }
+      #checkout-button{
+        background-color: #1c8a7f;
+        color:rgb(247, 241, 241)
+      }
+      #addCart{
+        background-color: #1c8a7f;
+        color:rgb(247, 241, 241)
+      }
+
+@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+body {
+    
+    font-family: 'Calibri', sans-serif !important;
+}
+
+.mt-100{
+   margin-top:100px;
+
+}
+
+
+.card {
+    margin-bottom: 30px;
+    border: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    letter-spacing: .5px;
+    border-radius: 8px;
+    -webkit-box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+    box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+}
+
+.card .card-header {
+    background-color: #fff;
+    border-bottom: none;
+    padding: 24px;
+    border-bottom: 1px solid #f6f7fb;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+
+
+.card .card-body {
+    padding: 30px;
+    background-color: transparent;
+}
+
+.btn-primary, .btn-primary.disabled, .btn-primary:disabled {
+    background-color: #4466f2!important;
+    border-color: #4466f2!important;
+}
+.empty{
+    color: rgb(213, 49, 49);
+}
+.btn-shop:hover{
+    color: white;
+    background-color: black;
+}
+</style>
+
+{{#if productDetails}}
+<div class="container">
+    <section class="content-main">
+            <div class="content-header">
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each productDetails}}
+                                <tr class="text-center">
+                                   <td><img src="/uploads/{{this.images.[0]}}" style="max-width:80px; max-height: 80px;"></th></td>
+                                   <td style="vertical-align: middle;"><strong>{{this.productname}}</strong><br><span class="offer-price">Offer Price: Rs.{{this.offerprice}}</span></td>
+                                    <td style="vertical-align: middle;">{{this.description}}</td>
+                                    <td style="vertical-align: middle;">
+                                        <button id="addCart" class="btn btn-success rounded font-sm" onclick="addToCart('{{this._id}}')">Add to Cart</button>
+                                       <button class="remove-button ms-4"><i class="bi bi-trash" onclick="removeWishList('{{this._id}}')"></i></button>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+  </div>
+  {{else}}
+
+  <section>
+    <div class="container mt-4">
+        <div class="row text-center ">
+         <span class="empty mt-4"><i class="bi bi-bag-x-fill" style="font-size: 4rem;"></i></span>
+         </div>
+         <div class="row text-center mb-2">
+            <h4><strong>Your Wishlist is Empty</strong></h4>
+         </div>
+         <div class=" text-center">
+            <a href="/">
+              <button class="btn-shop px-3 py-2">SHOP NOW</button>
+            </a>
+          </div>
+
+    </div>
+  </section>
+
+  {{/if}}
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascript/addCart.js"></script>
+    <script src="/javascript/removeWishList.js"></script>

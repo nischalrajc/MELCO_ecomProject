@@ -1,0 +1,64 @@
+
+
+{{#if user}}
+  <header class="header1">
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container-fluid ">
+            <a class="navbar-brand " href="#">
+                <img src="/images/Screenshot 2023-05-13 113209.png" alt="logo" class="logo-img" width="140" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- <li class="nav-item">
+                        <form class="d-flex me-5" >
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-dark" type="submit">Search</button>
+                        </form>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-5" href="/cart"><i class="bi bi-bag-fill me-1"></i>Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-5" href="/wishlist"><i class="bi bi-heart-fill me-1"></i>Wishlist</a>
+                    </li>
+                    <li class="nav-item me-lg-5">
+                        {{#if logedin}}
+                        <a class="nav-link" href="/profile"><i class="bi bi-person-fill"></i>Profile</a>
+                        {{else}}
+                        <a class="nav-link" href="/login"><i class="bi bi-box-arrow-in-right me-1"></i>Login/Signup</a>
+                        {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+ <div class="sticky-navbar ">
+        <div class="container  text-center p-3"  >
+            <div class="row">
+                <div class="col">
+                    <a  aria-current="page" href="/">HOME</a>
+                </div>
+                <div class="col">
+                    <a  aria-current="page" href="/men">MEN</a>
+                </div>
+                <div class="col">
+                    <a  aria-current="page" href="/women">WOMEN</a>
+                </div>
+                <div class="col">
+                    <a  aria-current="page" href="/kids">KIDS</a>
+                </div>
+                <div class="col">
+                    <a  aria-current="page" href="/contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+
+
+    

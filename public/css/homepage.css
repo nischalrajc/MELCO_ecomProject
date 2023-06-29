@@ -1,0 +1,16 @@
+
+.header1 {
+    background-color: white;
+    font-family: 'Cookie';
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.sticky-navbar {
+position: sticky;
+top: -1px;
+box-sizing: border-box;
+background-color: white; 
+z-index: 999; 
+}

@@ -1,0 +1,41 @@
+
+
+<main class="main-wrap">
+    <section class="content-main">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form id="productForm" action="/admin/addbanner" method="post"  enctype="multipart/form-data">
+                            <div class="mb-4">
+                                <label for="banner_tittle" class="form-label">Banner title</label>
+                                <input  type="text" placeholder="Type here" class="form-control" id="banner_tittle" name="banner_tittle">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Description</label>
+                                <textarea placeholder="Type here" class="form-control" rows="3" name="description"></textarea>
+                            </div> 
+                            <div class="row">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <h4>Banner Image</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="input-upload">
+                                                <input class="form-control" type="file" name="bannerImage" >
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                            </div>
+                            <button type="submit" class="btn btn-md rounded font-sm hover-up">Add Banner</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

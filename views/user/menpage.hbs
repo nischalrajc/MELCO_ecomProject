@@ -1,0 +1,60 @@
+<style>
+    a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+} 
+
+
+.btn-wishList{
+  border: none;
+  background-color: white;
+}
+.card:hover {
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+</style>
+
+<body>
+    <div class="container-fluid mt-3">
+        <div class="row d-flex justify-content-center">
+            {{#each product}}
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="card mb-3" >
+                    <a href="/product_details/{{this._id}}" class="card-link">
+                    <img src="/uploads/{{this.coverImage}}" class="card-img-top" alt="responsive image 1" >
+                    </a>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12">
+                        <h5 class="card-title text-center"><strong>{{this.productname}}</strong></h5>
+                        </div>
+                        <div class="col-12">
+                        <p class="card-text text-center">{{this.description}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-1 pb-2">
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-5 text-end text-success">
+                        <s>Rs.{{this.price}}</s>
+                      </div >
+                      <div class="col-lg-4 col-md-4 col-sm-4 col-5">
+                        <strong class="text-success">Rs.{{this.offerprice}}</strong></i>
+                      </div>
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-2">
+                        <button class="btn-wishList" onclick="addToWishList('{{this._id}}')">
+                        <i class="bi bi-bookmark-heart-fill"></i>
+                        </button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</body>
+
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="/javascript/wishList.js"></script>

@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/css/usersignup.css">
+
+<body>
+    <div class="login-box">
+      <br><br>
+        <h2> SIGNUP</h2>
+         <form action="/signUp" method="post">
+          <div class="user-box">
+            <input type="text"  name="name" required>
+            <label>Name</label>
+          </div>
+          <div class="user-box">
+            <input type="Email" name="email"  required>
+            <label>Email</label>
+          </div>
+           <div class="user-box">
+            <input type="number" name="phonenumber" required>
+            <label>Phone number</label>
+          </div>
+          <div class="user-box">
+            <input type="password"  name="password"  required>
+            <label>Password</label>
+          </div>
+          <div class="user-box">
+            <input type="password"  name="confirmpassword"  required>
+            <label> Confirm Password</label>
+          </div>
+          <br>
+          {{#if alertmsg}}
+           <div class="alert alert-primary" role="alert">
+             mail id already exist
+           </div>
+           {{/if}}
+           {{#if errmsg}}
+           <div class="alert alert-primary" role="alert">
+             {{errmsg}}
+           </div>
+           {{/if}}
+          <a href="#">
+           <input type="submit" class="submitdata btn btn-dark" name="">        
+          </a>
+        </form>
+      </div>
+
+</body>
+</section>

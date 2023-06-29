@@ -1,0 +1,49 @@
+<style>
+    .trash{
+        border: none;
+        background-color: white;
+    }
+    h6{
+        color: white;
+    }
+    
+</style>
+
+<main class="main-wrap">
+    <section class="content-main">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form action="/admin/editCoupon/{{coupon._id}}" method="post">
+                            <div class="mb-2">
+                                <h3>Edit Here..</h3>
+                            </div>
+                            <div class="mb-4">
+                                <label for="coupon_code" class="form-label">Coupon Code</label>
+                                <input type="text" value="{{coupon.couponCode}}" placeholder="Type here" class="form-control" id="coupon_code" name="couponCode" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="minimum_purchase" class="form-label">Minimum Limit</label>
+                                <input type="number" value="{{coupon.minLimit}}" placeholder="Type here" class="form-control" id="minimum_amount" name="minLimit" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="discount_percentage" class="form-label">Coupon Amount</label>
+                                <input type="number" value="{{coupon.discountPercentage}}"  placeholder="Type here" class="form-control" id="discount_percentage" name="discountPercentage" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="expiry_date" class="form-label">Expiry Date</label>
+                                <input type="date" value="{{dateFormatter coupon.expireDate "YYYY-MM-DD"}}" class="form-control" id="expiry_date" name="expireDate" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-md rounded font-sm hover-up">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+

@@ -1,0 +1,43 @@
+
+<main class="main-wrap">
+    <section class="content-main">
+        <div class="row">
+            <div class="col-9">
+                <div class="content-header">
+                    <h3 class="content-title">Add New Category</h3>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form  action="/admin/add_category" method="post" >
+                            <div class="mb-4">
+                                <label for="product_name" class="form-label"><h3>Category</h3></label>
+                                <input type="text" placeholder="Type here" class="form-control" id="product_name" name="categoryname">
+                            </div>
+                            <div>
+                                {{#if message}}
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Category Already Exist!</strong> You should check those fields below.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                {{/if}}
+                            </div>
+                            <div class="row mb-4">
+                                <h6>Already existing category</h6>
+                                <ol class="list-group list-group-numbered">
+                                     {{#each Category}}
+                                    <li class="list-group-item">{{this.name}}</li>
+                                    {{/each}}
+                                </ol>
+                            </div>
+                            <div>
+                            <button type="submit" class="btn btn-md rounded font-sm hover-up">Add Category</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

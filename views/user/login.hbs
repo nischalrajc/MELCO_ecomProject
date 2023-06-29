@@ -1,0 +1,45 @@
+
+<link rel="stylesheet" href="/css/userlogin.css">
+
+<body>
+     <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container-fluid ">
+            <a class="navbar-brand " href="/">
+                <img src="/images/Screenshot 2023-05-13 113209.png" alt="logo" class="logo-img" width="140" height="40">
+            </a>  
+        </div>
+    </nav>
+
+    <div class="login-box">
+      <br><br>
+        <h2> Login</h2>
+        <form action="/login" method="post">
+          <div class="user-box">
+            <input type="email" name="email" required>
+            <label>Email</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="password" required>
+            <label>Password</label>
+          </div>
+          
+          {{#if validate}}
+           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+           <strong>You are blocked!</strong> you canot access the website
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" fdprocessedid="efza1j"></button>
+           </div>
+          {{/if}}
+          <a href="#">
+           <input type="submit" class="submitdata btn btn-dark"  name="">        
+          </a>
+             {{#if passworderr}}
+              invalid credential!
+              {{/if}}
+       <br>
+          <a href="/signUp" class="adminredirect btn">SIGN UP</a> <a href="/otpLogin" class="adminredirect btn">OTP Login?</a><br> 
+        </form>
+      </div>
+
+</body>
+
+

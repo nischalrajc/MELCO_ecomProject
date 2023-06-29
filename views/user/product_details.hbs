@@ -1,0 +1,212 @@
+{{!-- 
+<style>
+a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+} 
+#rsicon{
+    color: green;
+}
+.btn-addcart{
+    background: #F3921F;
+    border: #F3921F;
+    padding: 7px 8px;
+    border-radius: 3px;
+}
+.btn-order{
+    background: #FD6B19;
+    border: #FD6B19;
+    padding: 5px 8px;
+    border-radius: 3px;
+}
+
+
+</style>
+
+<body>
+    <div class="container">
+        <div   class="row mt-4" >
+            <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                {{#each product.images}}
+                <div>
+                    <a href="javascript:void(0);" onclick="changeMainImage('{{this}}')">
+                    <img src="/uploads/{{this}}" class="img-fluid" alt="loading..">
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-8 col-xs-10" >
+                    <img id="mainImage" src="/uploads/{{product.images.[0]}}" class="img-fluid  custom-image zoom" alt="loading.." data-zoom-image="{{product.images.[0]}}" >
+            </div>
+            <div class="col-lg-5  text-center">
+                <div class="row pt-3 ">
+                    <h1><strong ><p>{{product.productname}}</p></strong></h1>
+                    <h5><p>{{product.description}}</p></h5>
+                    <h3><strong><p class="text-success"><i class="bi bi-currency-rupee " id="rsicon"></i>{{product.offerprice}}</p></strong></h3>
+                    <h6><S><p class="text-success">₹.{{product.price}}</p></S></h6>
+                </div>
+                <div>
+                    <h6><p>Available Offers:</p>
+                    <p><i class="bi bi-bookmark-check-fill" id="rsicon"></i>Get up to 25% of on this product</p>
+                    <p><i class="bi bi-bookmark-check-fill" id="rsicon"></i>Offer available up to the coming june 1st week only</p>
+                    <p><i class="bi bi-bookmark-check-fill" id="rsicon"></i>special discount on cards</p></h6>
+                </div>
+                <div class="row mt-4 ">
+                    <div class="col d-flex justify-content-end">
+                    <button type="button" class=" btn-addcart" onclick="addToCart('{{product._id}}')">Add to Cart</button>
+                    </div>
+                    <div class="col d-flex justify-content-start">
+                    <button type="button" class=" btn-order">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <script>
+        function changeMainImage(imagePath) {
+            document.getElementById('mainImage').src = '/uploads/' + imagePath;
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascript/addCart.js"></script>
+ 
+
+
+</body> --}}
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+            font-family: 'Palanquin';
+            font-weight: bold;
+        }
+
+        #rsicon {
+            color: green;
+        }
+
+        .btn-addcart {
+            background: #F3921F;
+            border: #F3921F;
+            padding: 7px 8px;
+            border-radius: 3px;
+        }
+
+        .btn-order {
+            background: #FD6B19;
+            border: #FD6B19;
+            padding: 5px 8px;
+            border-radius: 3px;
+        }
+
+        .zoom-container {
+            overflow: hidden;
+            cursor: move;
+            position: relative;
+        }
+
+        .zoom-image {
+            width: 100%;
+            transition: transform 0.3s;
+        }
+
+        .zoom-container:hover .zoom-image {
+            transform: scale(1.5);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                {{#each product.images}}
+                <div>
+                    <a href="javascript:void(0);" onclick="changeMainImage('{{this}}')">
+                        <img src="/uploads/{{this}}" class="img-fluid" alt="loading..">
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+            <div class="zoom-container col-lg-4 col-md-8 col-sm-8 col-xs-10">
+                <img id="mainImage" src="/uploads/{{product.images.[0]}}" class="img-fluid custom-image zoom-image"
+                    alt="loading.." data-zoom-image="{{product.images.[0]}}">
+            </div>
+            <div class="col-lg-5 text-center">
+                <div class="row pt-3">
+                    <h1><strong><p>{{product.productname}}</p></strong></h1>
+                    <h5><p>{{product.description}}</p></h5>
+                    <h3><strong><p class="text-success"><i class="bi bi-currency-rupee " id="rsicon"></i>{{product.offerprice}}</p></strong>
+                    </h3>
+                    <h6><S><p class="text-success">₹.{{product.price}}</p></S></h6>
+                </div>
+                <div>
+                    <h6><p>Available Offers:</p>
+                        <p><i class="bi bi-bookmark-check-fill" id="rsicon"></i>Get up to 25% off on this product</p>
+                        <p><i class="bi bi-bookmark-check-fill" id="rsicon"></i>Offer available until the first week of June</p>
+                        <p><i class="bi bi-bookmark-check-fill" id="rsicon"></i>Special discount on cards</p></h6>
+                </div>
+                <div class="row mt-4">
+                    <div class="col d-flex justify-content-center">
+                        <button type="button" class=" btn-addcart" onclick="addToCart('{{product._id}}')">Add to Cart</button>
+                    </div>
+                    {{!-- <div class="col d-flex justify-content-start">
+                        <button type="button" class=" btn-order">Buy Now</button>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeMainImage(imagePath) {
+            document.getElementById('mainImage').src = '/uploads/' + imagePath;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascript/addCart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/jquery.elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+
+   
+    <script>
+        $(document).ready(function () {
+            $('.zoom-container').on('mousemove', function (e) {
+                var imageWidth = $(this).find('.zoom-image').width();
+                var containerWidth = $(this).width();
+                var offsetX = e.pageX - $(this).offset().left;
+                var offsetY = e.pageY - $(this).offset().top;
+                var xPercentage = offsetX / containerWidth;
+                var yPercentage = offsetY / containerWidth;
+
+                $(this).find('.zoom-image').css({
+                    'transform-origin': (xPercentage * 100) + '% ' + (yPercentage * 100) + '%'
+                });
+            });
+
+            $('.zoom-container').on('mouseleave', function () {
+                $(this).find('.zoom-image').css({
+                    'transform-origin': 'center center'
+                });
+            });
+        });
+    </script>
+   
+</body>
+
+</html>

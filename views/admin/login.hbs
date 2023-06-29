@@ -1,0 +1,30 @@
+
+<link rel="stylesheet" href="/css/userlogin.css">
+<body>
+    <div class="login-box">
+        <br><br>
+          <h2>Admin login </h2>
+          <form action="/admin" method="post">
+            <div class="user-box">
+              <input type="email" name="email" required>
+              <label>Email</label>
+            </div>
+            <div class="user-box">
+              <input type="password" name="password" required>
+              <label>Password</label>
+            </div>
+            
+              {{#if message}}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Authentication failed!</strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              {{/if}}
+           
+            <a href="#">
+                <input type="submit" class="submitdata btn btn-dark"  name="">        
+               </a>
+         <br>
+          </form>
+        </div>
+</body>

@@ -1,0 +1,34 @@
+
+<link rel="stylesheet" href="/css/userlogin.css">
+
+<body>
+     <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container-fluid ">
+            <a class="navbar-brand " href="/">
+                <img src="/images/Screenshot 2023-05-13 113209.png" alt="logo" class="logo-img" width="140" height="40">
+            </a>  
+        </div>
+    </nav>
+
+    <div class="login-box">
+      <br><br>
+        <h3>Melco</h3>
+        <form action="/otpvalidation" method="post">
+          <div class="user-box">
+            <input type="text" name="otp" required>
+            <label>Enter OTP</label>
+          </div>
+          {{#if otperr}}
+          <div>
+            Incorrect otp!,pls type correctly
+          </div><br>
+          {{/if}}
+          <a href="#">
+           <input type="submit" class="submitdata btn btn-dark" name="">        
+          </a>
+       <br>
+        </form>
+      </div>
+
+</body>
+</html>

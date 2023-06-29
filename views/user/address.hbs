@@ -1,0 +1,121 @@
+<style>
+    a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+     }
+</style>
+<div class="sticky-navbar ">
+<header class="header1">
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container-fluid ">
+            <a class="navbar-brand " href="#">
+                <img src="/images/Screenshot 2023-05-13 113209.png" alt="logo" class="logo-img" width="140" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- <li class="nav-item">
+                        <form class="d-flex me-5" >
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-dark" type="submit">Search</button>
+                        </form>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-5" href="/cart"><i class="bi bi-bag-fill me-1"></i>Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-5" href="#"><i class="bi bi-heart-fill me-1"></i>Wishlist</a>
+                    </li>
+                    <li class="nav-item me-lg-5">
+                        {{#if logedin}}
+                        <a class="nav-link" href="/profile"><i class="bi bi-person-fill"></i>Profile</a>
+                        {{else}}
+                        <a class="nav-link" href="/login"><i class="bi bi-box-arrow-in-right me-1"></i>Login/Signup</a>
+                        {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+</div>
+
+<div class="container vh-100">
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <form action="/addAddress" method="post" class="row g-3  w-100">
+      <div class="col">
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example1" name="firstname" class="form-control" />
+              <label class="form-label" for="form7Example1">First name</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2" name="lastname" class="form-control" />
+              <label class="form-label" for="form7Example2">Last name</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-outline mb-4">
+          <textarea class="form-control" name="address" id="form7Example7" rows="4"></textarea>
+          <label class="form-label" for="form7Example7">Address</label>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example1" name="place" class="form-control" />
+              <label class="form-label" for="form7Example1">Place</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2" name="city" class="form-control" />
+              <label class="form-label" for="form7Example2">City</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example1" name="district" class="form-control" />
+              <label class="form-label" for="form7Example1">District</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2" name="state" class="form-control" />
+              <label class="form-label" for="form7Example2">State</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="number" id="form7Example1" name="pincode" class="form-control" />
+              <label class="form-label" for="form7Example1">Pincode</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="form7Example2" name="phone" class="form-control" />
+              <label class="form-label" for="form7Example2">Phone</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Add</button>
+      </div>
+    </form>
+  </div>
+</div>

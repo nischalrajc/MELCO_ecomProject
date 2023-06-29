@@ -1,0 +1,697 @@
+
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<style>
+    a{  
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+    }
+    
+    a#dashboard-tab {
+     color: black;
+      font-size: 20px;
+    }
+    
+    #dashboard-tab:hover{
+        
+        color: white;
+        background-color:rgb(85, 142, 144)
+        
+    }
+    .cart-count{
+        color: red;
+    }
+
+    .btn-delete{
+        border: none;
+        background-color: white;
+    }
+    .btn-delete:hover {
+      color: rgb(176, 41, 41); 
+      cursor: pointer;
+    }
+    .add-address {
+     display: flex;
+     justify-content: flex-end;
+    }
+    .add-btn{
+        background-color: rgb(19, 19, 48);
+        color: white;
+        padding-top: 8px;
+        padding-bottom:8px ;
+        padding-left:8px;
+        padding-right: 8px;
+        border-radius: 4px;
+    }
+    .button-row {
+    display: flex;
+    gap: 8px; 
+}
+
+.cancel-button {
+    margin-right: 8px; 
+}
+
+    
+</style>
+
+ <header class="header1">
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container-fluid ">
+            <a class="navbar-brand " href="#">
+                <img src="/images/Screenshot 2023-05-13 113209.png" alt="logo" class="logo-img" width="140" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-5" href="/cart"><i class="bi bi-bag-fill me-1"></i>Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-5" href="/wishlist"><i class="bi bi-heart-fill me-1"></i>Wishlist</a>
+                    </li>
+                    <li class="nav-item me-lg-5">
+                        {{#if logedin}}
+                        <a class="nav-link" href="/profile"><i class="bi bi-person-fill"></i>Profile</a>
+                        {{else}}
+                        <a class="nav-link" href="/login"><i class="bi bi-box-arrow-in-right me-1"></i>Login/Signup</a>
+                        {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="pt-70 pb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col m-auto">
+                        <div class="row">
+                            <div id="profileManagement" class="col-md-4">
+                                <div class="dashboard-menu">
+                                    <ul class="nav flex-column" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="bi bi-person-vcard"></i>  Dashboard</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="dashboard-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="bi bi-truck"></i> Orders</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="dashboard-tab" data-bs-toggle="tab" href="#wallet" role="tab" aria-controls="wallet" aria-selected="false"><i class="bi bi-wallet2"></i> Wallet</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="dashboard-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="bi bi-book-half"></i> My Address</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="dashboard-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="bi bi-person-fill-gear"></i> Account details</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="dashboard-tab" href="/logout"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="tab-content dashboard-content">
+                                    <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                                        <section >
+  <div class="container py-2">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{userDetail.name}}</h5>
+           
+            {{!-- <div class="d-flex justify-content-center mb-2">
+              <button type="button" class="btn btn-primary">Follow</button>
+            </div> --}}
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{userDetail.name}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{userDetail.email}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{userDetail.phone_number}}</p>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+        <div class="card py-3">
+        <div class="row text-center">
+            <div class="col">
+                <div><strong><i class="bi bi-cart4"></i></strong></div>
+             <div>cart <span class="cart-count"> {{cartCount}}</span></div>
+            </div>
+            <div class="col">
+                <div><i class="bi bi-heart-fill"></i></div>
+                Wishlist
+            </div>
+            <div class="col">
+                <div><i class="bi bi-truck"></i></div>
+              oredered <span class="cart-count"> {{orderCount}}</span>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+                                    </div>
+                                    <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Your Orders</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Order</th>
+                                                                <th>Date</th>
+                                                                <th>Status</th>
+                                                                <th>Total</th>
+                                                                <th>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Orders}}
+                                                            <tr>
+                                                                <td>{{this._id}}</td>
+                                                                <td>{{dateFormatter this.orderDate "YYYY-MM-DD HH:mm:ss"}}</td>
+                                                                <td>{{this.deliveryStatus}}</td>
+                                                                <td>Rs.{{this.totalamount}}</td>
+                                                                <td>
+                                                                    <div class="button-row">
+                                                                        <a href="/orderDetails/{{this._id}}" class="btn-small d-inline-block">View</a>
+                                                                    </div>
+                                                                </td>
+
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane fade" id="wallet" role="tabpanel" aria-labelledby="wallet-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="mb-0">Wallet</h4>
+                                            </div>
+                                            <div class="card-body contact-from-area">
+                                                <div class="row">
+                                                    <h6>Wallet Amount: {{wallet.amount}}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+                                        <div class="row">
+                                            <div class="add-address mb-3 "><a href="/addAddress"><button class="add-btn">Add Address</button></a></div>
+                                            
+                                            
+
+                                                {{#each address}}
+                                            <div class="col-lg-6">
+                                                <div class="card mb-3 mb-lg-2">
+                                                <div class="card-header">
+                                                    <h5 class="mb-0">Billing Address</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <address>
+                                                    {{this.firstname}} {{this.lastname}}<br>
+                                                    {{this.address}},<br>
+                                                    {{this.place}}, {{this.city}}<br>
+                                                    {{this.district}}, {{this.state}}-{{this.pincode}}
+                                                    </address>
+                                                    <a href="#" class="btn-small" data-bs-toggle="modal" data-bs-target="#exampleModal{{@index}}">Edit </a><button onclick="removeAddress('{{this._id}}')" class="btn-delete ms-3"><i class="bi bi-trash3"></i></button>
+                                                </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal{{@index}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                    <form action="/profile/{{this._id}}" method="post" class="row g-3">
+                                                        <div class="col">
+                                                        <div class="row mb-4">
+                                                            <div class="col">
+                                                            <div class="form-outline">
+                                                                <input type="text" value="{{this.firstname}}" id="form7Example1" name="firstname" class="form-control" />
+                                                                <label class="form-label" for="form7Example1">First name</label>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col">
+                                                            <div class="form-outline">
+                                                                <input type="text" value="{{this.lastname}}" id="form7Example2" name="lastname" class="form-control" />
+                                                                <label class="form-label" for="form7Example2">Last name</label>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- address input -->
+                                                        <div class="form-outline mb-4">
+                                                            <textarea class="form-control" name="address" id="form7Example7" rows="4">{{this.address}}</textarea>
+                                                            <label class="form-label" for="form7Example7">Address</label>
+                                                        </div>
+
+                                                        <!-- 2 column grid layout with place and street -->
+                                                        <div class="row mb-4">
+                                                            <div class="col">
+                                                            <div class="form-outline">
+                                                                <input type="text" id="form7Example1" value="{{this.place}}" name="place" class="form-control" />
+                                                                <label class="form-label" for="form7Example1">Place</label>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col">
+                                                            <div class="form-outline">
+                                                                <input type="text" value="{{this.city}}" id="form7Example2" name="city" class="form-control" />
+                                                                <label class="form-label" for="form7Example2">City</label>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- 2 column grid layout with district and state -->
+                                                        <div class="row mb-4">
+                                                            <div class="col">
+                                                            <div class="form-outline">
+                                                                <input type="text" value="{{this.district}}" id="form7Example1" name="district" class="form-control" />
+                                                                <label class="form-label" for="form7Example1">District</label>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col">
+                                                            <div class="form-outline">
+                                                                <input type="text" value="{{this.state}}" id="form7Example2" name="state" class="form-control" />
+                                                                <label class="form-label" for="form7Example2">State</label>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- 2 column grid layout with pincode and phonenumber -->
+                                                        <div class="row mb-4">
+                                                            <div class="col">
+                                                            <div class="form-outline">
+                                                                <input type="number" value="{{this.pincode}}" id="form7Example1" name="pincode" class="form-control" />
+                                                                <label class="form-label" for="form7Example1">Pincode</label>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col">
+                                                            <div class="form-outline">
+                                                                <input type="text" value="{{this.phone}}" id="form7Example2" name="phone" class="form-control" />
+                                                                <label class="form-label" for="form7Example2">Phone</label>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                        </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            {{/each}}
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Account Details</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                {{!-- <p>Already have an account? <a href="page-login-register.html">Log in instead!</a></p> --}}
+                                                <form action="/profile" method="post">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label> Name <span class="required">*</span></label>
+                                                            <input value="{{userDetail.name}}" required="" class="form-control square" name="name" type="text">
+                                                        </div>
+                                                        {{!-- <div class="form-group col-md-6">
+                                                            <label>Last Name <span class="required">*</span></label>
+                                                            <input required="" class="form-control square" name="phone">
+                                                        </div> --}}
+                                                        {{!-- <div class="form-group col-md-12">
+                                                            <label>Display Name <span class="required">*</span></label>
+                                                            <input required="" class="form-control square" name="dname" type="text">
+                                                        </div> --}}
+                                                        <div class="form-group col-md-6">
+                                                            <label>Email Address <span class="required">*</span></label>
+                                                            <input required="" value="{{userDetail.email}}" class="form-control square" name="email" type="email">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>Phone <span class="required">*</span></label>
+                                                            <input required=""  value="{{userDetail.phone_number}}" class="form-control square" name="phone" >
+                                                        </div>
+                                                        {{!-- <div class="form-group col-md-12">
+                                                            <label>Current Password </label>
+                                                            <input   class="form-control square" name="password" type="password">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>New Password</label>
+                                                            <input   class="form-control square" name="npassword" type="password">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Confirm Password </label>
+                                                            <input  class="form-control square" name="cpassword" type="password">
+                                                        </div> --}}
+                                                        <div class="col-md-12 pt-2">
+                                                            <button type="submit" class="btn btn-primary" name="submit" value="Submit">Save</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascript/orderCancel.js"></script>
+
+{{!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> --}}
+
+    <script src="/assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/vendors/select2.min.js"></script>
+    <script src="/assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/assets/js/vendors/chart.js"></script>
+    <!-- Main Script -->
+    <script src="/assets/js/main.js" type="text/javascript"></script>
+    <script src="/assets/js/custom-chart.js" type="text/javascript"></script>
+
+ 
+
+    {{!-- <link rel="stylesheet" href="/css/userProfile.css">
+
+    <style>
+    a{  
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+    }
+    
+    a#dashboard-tab {
+     color: black;
+      font-size: 20px;
+    }
+ 
+</style> --}}
+
+
+  {{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynav"
+                aria-controls="mynav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <div class="d-flex">
+                    <div class="d-flex align-items-center logo bg-purple">
+                        <div class="fab fa-joomla h2 text-white"></div>
+                    </div>
+                    <div class="ms-3 d-flex flex-column">
+                        <div class="h4">Furfection</div>
+                        <div class="fs-6">My pet App</div>
+                    </div>
+                </div>
+            </a>
+            <div class="collapse navbar-collapse" id="mynav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Categories <span
+                                class="fas fa-th-large px-1"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Exclusive</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Collections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <div class="cart bg-purple">
+                                <span class="fas fa-shopping-cart text-white"></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> <span class="fas fa-user pe-2"></span> Hello Jhon</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> --}}
+{{!-- 
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3 my-lg-0 my-md-1">
+                <div id="sidebar" class="bg-purple">
+                    <div class="h4 text-white">Account</div>
+                    <ul>
+                        <li class="active">
+                            <a href="#" class="text-decoration-none d-flex align-items-start">
+                                <div class="fas fa-box pt-2 me-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="link">My Account</div>
+                                    <div class="link-desc">View & Manage orders and returns</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-decoration-none d-flex align-items-start">
+                                <div class="fas fa-box-open pt-2 me-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="link">My Orders</div>
+                                    <div class="link-desc">View & Manage orders and returns</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-decoration-none d-flex align-items-start">
+                                <div class="far fa-address-book pt-2 me-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="link">Address Book</div>
+                                    <div class="link-desc">View & Manage Addresses</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-decoration-none d-flex align-items-start">
+                                <div class="far fa-user pt-2 me-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="link">My Profile</div>
+                                    <div class="link-desc">Change your profile details & password</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-decoration-none d-flex align-items-start">
+                                <div class="fas fa-headset pt-2 me-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="link">Help & Support</div>
+                                    <div class="link-desc">Contact Us for help and support</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9 my-lg-0 my-1">
+                <div id="main-content" class="bg-white border">
+                    <div class="d-flex flex-column">
+                        <div class="h5">Hello Jhon,</div>
+                        <div>Logged in as: someone@gmail.com</div>
+                    </div>
+                    <div class="d-flex my-4 flex-wrap">
+                        <div class="box me-4 my-1 bg-light">
+                            <img src="https://www.freepnglogos.com/uploads/box-png/cardboard-box-brown-vector-graphic-pixabay-2.png"
+                                alt="">
+                            <div class="d-flex align-items-center mt-2">
+                                <div class="tag">Orders placed</div>
+                                <div class="ms-auto number">10</div>
+                            </div>
+                        </div>
+                        <div class="box me-4 my-1 bg-light">
+                            <img src="https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-campus-recreation-university-nebraska-lincoln-30.png"
+                                alt="">
+                            <div class="d-flex align-items-center mt-2">
+                                <div class="tag">Items in Cart</div>
+                                <div class="ms-auto number">10</div>
+                            </div>
+                        </div>
+                        <div class="box me-4 my-1 bg-light">
+                            <img src="https://www.freepnglogos.com/uploads/love-png/love-png-heart-symbol-wikipedia-11.png"
+                                alt="">
+                            <div class="d-flex align-items-center mt-2">
+                                <div class="tag">Wishlist</div>
+                                <div class="ms-auto number">10</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-uppercase">My recent orders</div>
+                    <div class="order my-3 bg-light">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="d-flex flex-column justify-content-between order-summary">
+                                    <div class="d-flex align-items-center">
+                                        <div class="text-uppercase">Order #fur10001</div>
+                                        <div class="blue-label ms-auto text-uppercase">paid</div>
+                                    </div>
+                                    <div class="fs-8">Products #03</div>
+                                    <div class="fs-8">22 August, 2020 | 12:05 PM</div>
+                                    <div class="rating d-flex align-items-center pt-1">
+                                        <img src="https://www.freepnglogos.com/uploads/like-png/like-png-hand-thumb-sign-vector-graphic-pixabay-39.png"
+                                            alt=""><span class="px-2">Rating:</span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="far fa-star"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="d-sm-flex align-items-sm-start justify-content-sm-between">
+                                    <div class="status">Status : Delivered</div>
+                                    <div class="btn btn-primary text-uppercase">order info</div>
+                                </div>
+                                <div class="progressbar-track">
+                                    <ul class="progressbar">
+                                        <li id="step-1" class="text-muted green">
+                                            <span class="fas fa-gift"></span>
+                                        </li>
+                                        <li id="step-2" class="text-muted green">
+                                            <span class="fas fa-check"></span>
+                                        </li>
+                                        <li id="step-3" class="text-muted green">
+                                            <span class="fas fa-box"></span>
+                                        </li>
+                                        <li id="step-4" class="text-muted green">
+                                            <span class="fas fa-truck"></span>
+                                        </li>
+                                        <li id="step-5" class="text-muted green">
+                                            <span class="fas fa-box-open"></span>
+                                        </li>
+                                    </ul>
+                                    <div id="tracker"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order my-3 bg-light">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="d-flex flex-column justify-content-between order-summary">
+                                    <div class="d-flex align-items-center">
+                                        <div class="text-uppercase">Order #fur10001</div>
+                                        <div class="green-label ms-auto text-uppercase">cod</div>
+                                    </div>
+                                    <div class="fs-8">Products #03</div>
+                                    <div class="fs-8">22 August, 2020 | 12:05 PM</div>
+                                    <div class="rating d-flex align-items-center pt-1">
+                                        <img src="https://www.freepnglogos.com/uploads/like-png/like-png-hand-thumb-sign-vector-graphic-pixabay-39.png"
+                                            alt=""><span class="px-2">Rating:</span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="far fa-star"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="d-sm-flex align-items-sm-start justify-content-sm-between">
+                                    <div class="status">Status : Delivered</div>
+                                    <div class="btn btn-primary text-uppercase">order info</div>
+                                </div>
+                                <div class="progressbar-track">
+                                    <ul class="progressbar">
+                                        <li id="step-1" class="text-muted green">
+                                            <span class="fas fa-gift"></span>
+                                        </li>
+                                        <li id="step-2" class="text-muted">
+                                            <span class="fas fa-check"></span>
+                                        </li>
+                                        <li id="step-3" class="text-muted">
+                                            <span class="fas fa-box"></span>
+                                        </li>
+                                        <li id="step-4" class="text-muted">
+                                            <span class="fas fa-truck"></span>
+                                        </li>
+                                        <li id="step-5" class="text-muted">
+                                            <span class="fas fa-box-open"></span>
+                                        </li>
+                                    </ul>
+                                    <div id="tracker"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"> --}}
+
+
+<script src="/javascript/removeAddress.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

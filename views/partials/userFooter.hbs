@@ -1,0 +1,59 @@
+<style>
+    .footer{
+  background-color: rgb(41, 38, 38);
+  color: rgb(223, 223, 223);
+}
+#footIcon{
+  color: rgba(242, 240, 240, 0.953);
+  font-weight: 100;
+}
+.footHead{
+font-weight: bold;
+}
+.footbody{
+  font-weight: 100;
+}
+</style>
+
+{{#if user}}
+
+<section class="footer">
+  <div class="container mt-4">
+    <div class="row py-5 .text-white-50">
+      <div class="col-lg-3 col-md-3 col-sm-4 col-6 ">
+        <div class="row "><span class="footHead">About Us</span></div>
+        <div class="row "><span class="footbody">Melco fashion and store</span></div>
+        <div class="row "><span class="footbody">Kochi,Calicut</span></div>
+        <div class="row "><span class="footbody">Organised on - 2016</span></div>
+        <div class="row "><span class="footbody">meloco@gmail.com</span></div>
+        <div class="row "><span class="footbody">PH - 9539801221</span></div>
+      </div>
+      <div  class="col-lg-6 col-md-6 col-sm-5 col-6">
+        <div class="row "><span class="footHead">Need Help?</span></div>
+          <div class="row"><a href="/" id="footIcon">Home</a></div>
+          <div class="row "><a href="/men" id="footIcon">Men</a></div>
+          <div class="row "><a href="/women" id="footIcon">Women</a></div>
+          <div class="row "><a href="/kids" id="footIcon">Kids</a></div>
+          <div class="row "><a href="/wishlist" id="footIcon">Wishlist</a></div>
+        <div class="row"><a href="/cart" id="footIcon">Cart</a></div>
+        <div class="row "><a href="/profile" id="footIcon">Profile</a></div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 mt-1 footbody ">
+        <div class="row px-1 px-sm-0">Join With Melco And Start Shopping</div>
+        <div class="row my-2 px-1 px-sm-0"><a href="/signUp" id="footIcon"><u>SignUp</u></a></div>
+        <div class="row footbodysignup px-1 px-sm-0">Sign up for updates on the latest Louis Philippe collection,campaigns and videos.</div>
+        <div class="row mt-3 px-1 px-sm-0">Find Us On Social
+          <div class="d-flex justify-content-center">
+            <span class="d-inline-block mx-2"><i class="bi bi-facebook"></i></span>
+            <span class="d-inline-block mx-2"><i class="bi bi-twitter"></i></span>
+            <span class="d-inline-block mx-2"><i class="bi bi-instagram"></i></span>
+            <span class="d-inline-block mx-2"><i class="bi bi-whatsapp"></i></span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/if}}

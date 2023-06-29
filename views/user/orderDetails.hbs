@@ -1,0 +1,206 @@
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<style>
+    a{  
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+    }
+
+    #deliveredAddress{
+        background-color: rgba(135, 160, 220, 0.174);
+    }
+
+    .to{
+        color:rgb(26, 24, 24);
+    }
+    .btn-one{
+        border: none;
+        background-color:transparent;
+        font-weight:bolder;
+    }
+    .btn-one:hover{
+        color: rgb(23, 101, 80);
+       font-weight:bolder;
+    }
+</style>
+
+
+ <header class="header1">
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container-fluid ">
+            <a class="navbar-brand " href="#">
+                <img src="/images/Screenshot 2023-05-13 113209.png" alt="logo" class="logo-img" width="140" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-5" href="/cart"><i class="bi bi-bag-fill me-1"></i>Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-5" href="#"><i class="bi bi-heart-fill me-1"></i>Wishlist</a>
+                    </li>
+                    <li class="nav-item me-lg-5">
+                        {{#if logedin}}
+                        <a class="nav-link" href="/profile"><i class="bi bi-person-fill"></i>Profile</a>
+                        {{else}}
+                        <a class="nav-link" href="/login"><i class="bi bi-box-arrow-in-right me-1"></i>Login/Signup</a>
+                        {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+    <div class="container">
+            <div class="content-header">
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Product</th>
+                                    {{!-- <th scope="col">Description</th> --}}
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each deliveryProducts.productInfo}}
+                                <tr class="text-center">
+                                   <td><img src="/uploads/{{this.Image.[0]}}" style="max-width:50px; max-height: 80px;"></td>
+                                    <td style="vertical-align: middle;">{{this.productname}}</td>
+                                    {{!-- <td style="vertical-align: middle;">{{this._doc.description}}</td> --}}
+                                    <td style="vertical-align: middle;">
+                                        {{this.quantity}}
+                                    </td>
+                                    <td style="vertical-align: middle;">{{multiply this.currentPrice this.quantity}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="deliveredAddress" class="card">
+                <div class="card-body"><span ><h5 class="to">Delivered To :</h5></span>{{deliveryProducts.deliveryDetails.firstname}} {{deliveryProducts.deliveryDetails.lastname}},<br>{{deliveryProducts.deliveryDetails.address}},{{deliveryProducts.deliveryDetails.place}},{{deliveryProducts.deliveryDetails.city}},{{deliveryProducts.deliveryDetails.disrtict}}{{deliveryProducts.deliveryDetails.state}},{{deliveryProducts.deliveryDetails.phone}}</div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div id="deliveredAddress" class="card">
+                <div class="card-body">Total Bill Amount: {{deliveryProducts.totalamount}}<br>Payment Mode: {{deliveryProducts.paymentMethode}}<br>Order Date: {{dateFormatter deliveryProducts.orderDate "YYYY-MM-DD"}}<br>Delivery Status: {{deliveryProducts.deliveryStatus}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+         {{#if (eq deliveryProducts.deliveryStatus "Delivered")}}
+        <button onclick="returnOrder('{{userOrder._id}}')" class="btn-one">Return Order</button>
+        {{/if}}
+
+         {{#if (eq deliveryProducts.deliveryStatus "Pending")}}
+        <button onclick="CancelOrder('{{userOrder._id}}')" class="btn-one">Cancel Order</button>
+        {{/if}}
+
+        {{#if (eq deliveryProducts.deliveryStatus "Shipped")}}
+        <button onclick="CancelOrder('{{userOrder._id}}')" class="btn-one">Cancel Order</button>
+        {{/if}}
+    </div>
+</div>  
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        function returnOrder(id) {
+          
+            Swal.fire({
+                title: 'Return Order',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Return'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                    url: '/returnOrder?id=' + id,
+                    type: 'get',
+                    success:function(response){
+                        if(response.status){
+                        Swal.fire(
+                            'request has been send',
+                        ).then(() => {
+                            location.href='/profile'
+                        });
+                        }
+                    },
+                    error: function(error) {
+                        console.log("Error:", error);
+                    }
+                    })
+                }
+                })
+       }
+    </script>
+
+
+    <script>
+        function CancelOrder(id) {
+          
+            Swal.fire({
+                title: 'Cancel Order',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                    url: '/cancelOrder?id=' + id,
+                    type: 'get',
+                    success:function(response){
+                        if(response.status){
+                        Swal.fire(
+                            'Order has cancelled',
+                        ).then(() => {
+                            location.href='/profile'
+                        });
+                        }
+                    },
+                    error: function(error) {
+                        console.log("Error:", error);
+                    }
+                    })
+                }
+                })
+       }
+    </script>
+
+
+

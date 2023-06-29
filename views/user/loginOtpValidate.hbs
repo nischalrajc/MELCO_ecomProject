@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/userlogin.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/images/Screenshot 2023-05-13 113209.png" alt="logo" class="logo-img" width="140" height="40">
+            </a>  
+        </div>
+    </nav>
+
+    <div class="login-box">
+        <br><br>
+        <h3>Melco</h3>
+        <form action="/loginOtp" method="post">
+            <div class="user-box">
+                <input type="text" name="otp" required>
+                <label>Enter OTP</label>
+            </div>
+            {{#if otperr}}
+                <div>
+                    Incorrect OTP! Please type correctly.
+                </div><br>
+            {{/if}}
+            <input type="submit" class="submitdata btn btn-dark" value="Submit">
+            <br>
+        </form>
+        
+        <div id="resend-container">
+            <p id="countdown"></p>
+            <p id="resend-text" style="display: none;">Didn't receive the OTP? Click <a href="#" id="resend-link">here</a> to resend.</p>
+        </div>
+    </div>
+
+    <script>
+        var countdownElement = document.getElementById('countdown');
+        var resendLink = document.getElementById('resend-link');
+        var resendText = document.getElementById('resend-text');
+        var countdownSeconds = 30; // Set the countdown duration in seconds
+        var countdownInterval;
+
+        function startCountdown() {
+            countdownElement.textContent = "Resend OTP in " + countdownSeconds + " seconds";
+            countdownInterval = setInterval(updateCountdown, 1000);
+            countdownElement.style.display = 'block';
+            resendLink.style.display = 'none';
+            resendText.style.display = 'none';
+
+            setTimeout(function() {
+                clearInterval(countdownInterval);
+                countdownElement.style.display = 'none';
+                resendLink.style.display = 'inline';
+                resendText.style.display = 'block';
+            }, countdownSeconds * 1000);
+
+           
+            // Send request to server to generate and send a new OTP
+            fetch('/resendOtp', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+        function updateCountdown() {
+            countdownSeconds--;
+            countdownElement.textContent = "Resend OTP in " + countdownSeconds + " seconds";
+        }
+
+        resendLink.addEventListener('click', function() {
+            startCountdown();
+        });
+
+        // Start the countdown
+        startCountdown();
+    </script>
+</body>
+</html>

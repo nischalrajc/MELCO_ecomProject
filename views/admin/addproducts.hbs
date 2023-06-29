@@ -1,0 +1,108 @@
+
+<main class="main-wrap">
+    <section class="content-main">
+        <div class="row">
+            <div class="col-9">
+                <div class="content-header">
+                    <h3 class="content-title">Add New Product</h3>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form id="productForm" action="/admin/addproducts" method="post" enctype="multipart/form-data">
+                            <div class="mb-4">
+                                <label for="product_name" class="form-label">Product title</label>
+                                <input type="text" placeholder="Type here" class="form-control" id="product_name" name="product_name">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Full description</label>
+                                <textarea placeholder="Type here" class="form-control" rows="4" name="description"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="mb-4">
+                                        <label class="form-label">Regular price</label>
+                                        <div class="row gx-2">
+                                            <input placeholder="$" type="text" class="form-control" name="price">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-4">
+                                        <label class="form-label">Offer price</label>
+                                        <input placeholder="$" type="text" class="form-control" name="offer_price">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-4">
+                                        <label class="form-label">Stock</label>
+                                        <input type="text" class="form-control" name="stock">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <h4>Image</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="input-upload">
+                                                <input class="form-control" type="file" name="image" multiple required>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <h4>cover_image</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="input-upload">
+                                                <input class="form-control" type="file" name="coverImage" multiple required>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+
+                                <div class="row">
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <h4>Category</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row gx-2">
+                                                <label class="form-label">Category</label>
+                                                <select class="form-select" name="category">
+                                                {{#each Category}}
+                                                    <option> {{this.name}} </option>
+                                                {{/each}}
+                                                </select>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label">Sub-category</label>
+                                <select class="form-select">
+                                    <option> Nissan </option>
+                                    <option> Honda </option>
+                                    <option> Mercedes </option>
+                                    <option> Chevrolet </option>
+                                </select>
+                            </div> 
+                            -->
+                            <button type="submit" class="btn btn-md rounded font-sm hover-up">Add item</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

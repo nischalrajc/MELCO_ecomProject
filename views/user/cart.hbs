@@ -1,0 +1,288 @@
+
+
+
+<style>
+    a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Palanquin';
+    font-weight: bold;
+     }
+  
+     .offer-price{
+        color: green;
+     }
+     .table-head{
+      font-size: 16px;
+      font-weight: bold;
+     }
+
+     #minusButton{
+      font-size: 20px;
+      border: none;
+      background: none;
+     }
+     #plusButton{
+      font-size: 20px;
+      border: none;
+      background: none;
+     }
+     .stock{
+      font-size: 15px;
+     }
+     .remove-button{
+      border: none;
+      background: none;
+      font-size: 18px;
+      color: black;
+     }
+     .remove-button:hover {
+      color: red; 
+      cursor: pointer;
+      }
+      #checkout-button{
+        background-color: #1c8a7f;
+        color:rgb(247, 241, 241)
+      }
+
+@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+body {
+    
+    font-family: 'Calibri', sans-serif !important;
+}
+
+.mt-100{
+   margin-top:100px;
+
+}
+
+
+.card {
+    margin-bottom: 30px;
+    border: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    letter-spacing: .5px;
+    border-radius: 8px;
+    -webkit-box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+    box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+}
+
+.card .card-header {
+    background-color: #fff;
+    border-bottom: none;
+    padding: 24px;
+    border-bottom: 1px solid #f6f7fb;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+
+
+.card .card-body {
+    padding: 30px;
+    background-color: transparent;
+}
+
+.btn-primary, .btn-primary.disabled, .btn-primary:disabled {
+    background-color: #4466f2!important;
+    border-color: #4466f2!important;
+}
+
+</style>
+{{!-- {{#if cartDetails}}
+  <table class="container table mt-3 text-center">
+  <thead class="table-head">
+    <tr>
+      <th scope="col">IMAGE</th>
+      <th scope="col">PRODUCT</th>
+      <th scope="col">QUANTITY</th>
+      <th scope="col">REMOVE</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each cartDetails}}
+    <tr>
+      <td><img src="/uploads/{{this.productInfo.images.[0]}}" style="max-width:100px; max-height: 100px;"></th>
+      <td><strong>{{this.productInfo.productname}}</strong><br><span class="offer-price">Offer Price: Rs.{{this.productInfo.offerprice}}</span></td>
+      <td>
+        <button  id="minusButton"class="quantity" onclick="quantityManagement('{{this.productInfo._id}}',-1)" >-</button>
+        <span id="{{this.productInfo._id}}" class="stock">{{this.quantity}}</span>
+        <button id="plusButton" class="quantity" onclick="quantityManagement('{{this.productInfo._id}}',1)">+</button>
+      </td>
+      <td><button class="remove-button"><i class="bi bi-trash" onclick="removeCart('{{this.productInfo._id}}')"></i></button></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<div class="container">
+  <div class="row justify-content-end">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-header py-3">
+          <h5 class="mb-0">Summary</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Products
+              <span id="carttotal">{{cartTotal}}</strong></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+              <div>
+                <strong>Total amount</strong>
+              </div>
+              <span>RS.<strong id="cartamount">{{cartTotal}}</strong></span>
+            </li>
+          </ul>
+
+          <div class="text-center">
+            <a href="/checkout">
+              <button type="button" id="checkout-button" class="btn btn-lg">
+              Go to checkout
+            </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{else}}
+
+  <div class="container-fluid  mt-100">
+				 <div class="row">
+				 
+					<div class="col-md-12">
+					
+							<div class="card">
+						<div class="card-body cart">
+								<div class="col-sm-12 empty-cart-cls text-center">
+									<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+									<h3><strong>Your Cart is Empty</strong></h3>
+									<a href="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+									
+								
+								</div>
+						</div>
+				</div>
+						
+					
+					</div>
+				 
+				 </div>
+				
+				</div>
+
+        {{/if}} --}}
+
+{{#if cartDetails}}
+<div class="container">
+    <section class="content-main">
+            <div class="content-header">
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each cartDetails}}
+                                    <tr class=" text-center">
+                                      <td><img src="/uploads/{{this.productInfo.images.[0]}}" style="max-width:100px; max-height: 100px;"></th>
+                                      <td style="vertical-align: middle;"><strong>{{this.productInfo.productname}}</strong><br><span class="offer-price">Offer Price: Rs.{{this.productInfo.offerprice}}</span></td>
+                                      <td style="vertical-align: middle;">
+                                        <button  id="minusButton"class="quantity" onclick="quantityManagement('{{this.productInfo._id}}',-1)" >-</button>
+                                        <span id="{{this.productInfo._id}}" class="stock">{{this.quantity}}</span>
+                                        <button id="plusButton" class="quantity" onclick="quantityManagement('{{this.productInfo._id}}',1)">+</button>
+                                      </td>
+                                      <td style="vertical-align: middle;"><button class="remove-button"><i class="bi bi-trash" onclick="removeCart('{{this.productInfo._id}}')"></i></button></td>
+                                    </tr>
+                                    {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+</div>
+
+<div class="container">
+  <div class="row justify-content-end">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-header py-3">
+          <h5 class="mb-0">Summary</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Products
+              <span id="carttotal">{{cartTotal}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+              <div>
+                <strong>Total amount</strong>
+              </div>
+              <span>Rs.<strong id="cartamount">{{cartTotal}}</strong></span>
+            </li>
+          </ul>
+
+          <div class="text-center">
+            <a href="/checkout">
+              <button type="button" id="checkout-button" class="btn btn-lg">
+              Go to checkout
+            </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{else}}
+
+  <div class="container-fluid  mt-100">
+				 <div class="row">
+				 
+					<div class="col-md-12">
+					
+							<div class="card">
+						<div class="card-body cart">
+								<div class="col-sm-12 empty-cart-cls text-center">
+									<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+									<h3><strong>Your Cart is Empty</strong></h3>
+									<a href="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+									
+								
+								</div>
+						</div>
+				</div>
+						
+					
+					</div>
+				 
+				 </div>
+				
+				</div>
+
+        {{/if}}
+
+
+    
+<script src="/javascript/deleteItem.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/javascript/quantityManagement.js"></script>
