@@ -131,9 +131,7 @@
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3">{{userDetail.name}}</h5>
            
-            {{!-- <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Follow</button>
-            </div> --}}
+           
           </div>
         </div>
         
@@ -363,21 +361,13 @@
                                                 <h5>Account Details</h5>
                                             </div>
                                             <div class="card-body">
-                                                {{!-- <p>Already have an account? <a href="page-login-register.html">Log in instead!</a></p> --}}
                                                 <form action="/profile" method="post">
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
                                                             <label> Name <span class="required">*</span></label>
-                                                            <input value="{{userDetail.name}}" required="" class="form-control square" name="name" type="text">
+                                                            <input value="{{userDetail.name}}" required="" class="form-control square" name="name" type="text" >
                                                         </div>
-                                                        {{!-- <div class="form-group col-md-6">
-                                                            <label>Last Name <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="phone">
-                                                        </div> --}}
-                                                        {{!-- <div class="form-group col-md-12">
-                                                            <label>Display Name <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="dname" type="text">
-                                                        </div> --}}
+                                                    
                                                         <div class="form-group col-md-6">
                                                             <label>Email Address <span class="required">*</span></label>
                                                             <input required="" value="{{userDetail.email}}" class="form-control square" name="email" type="email">
@@ -386,18 +376,7 @@
                                                             <label>Phone <span class="required">*</span></label>
                                                             <input required=""  value="{{userDetail.phone_number}}" class="form-control square" name="phone" >
                                                         </div>
-                                                        {{!-- <div class="form-group col-md-12">
-                                                            <label>Current Password </label>
-                                                            <input   class="form-control square" name="password" type="password">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label>New Password</label>
-                                                            <input   class="form-control square" name="npassword" type="password">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label>Confirm Password </label>
-                                                            <input  class="form-control square" name="cpassword" type="password">
-                                                        </div> --}}
+                
                                                         <div class="col-md-12 pt-2">
                                                             <button type="submit" class="btn btn-primary" name="submit" value="Submit">Save</button>
                                                         </div>
@@ -431,23 +410,6 @@
     <script src="/assets/js/custom-chart.js" type="text/javascript"></script>
 
  
-
-    {{!-- <link rel="stylesheet" href="/css/userProfile.css">
-
-    <style>
-    a{  
-    text-decoration: none;
-    color: black;
-    font-family: 'Palanquin';
-    font-weight: bold;
-    }
-    
-    a#dashboard-tab {
-     color: black;
-      font-size: 20px;
-    }
- 
-</style> --}}
 
 
   {{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">

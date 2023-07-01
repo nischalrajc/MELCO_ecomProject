@@ -9,6 +9,7 @@ const wishList = require('../model/wishList');
 const ObjectId = mongoose.Types.ObjectId
 const Razorpay = require('razorpay');
 const order = require('../model/orders');
+const Wallet=require('../model/wallet')
 
 // const order = require('../model/orders');
 // const { default: orders } = require('razorpay/dist/types/orders');
@@ -642,7 +643,18 @@ module.exports = {
       }catch(err){
         console.log("eror:",err)
       }
-    }
+    },
+
+    async updateWallet(userId,amount){
+      try{
+        const userWallet=await Wallet.findOne({user:userId})
+        userWallet.amount += amount;
+        await userWallet.save();
+        return true;
+      }catch(err){
+        console.log("error:",err)
+      }
+    },
     
     
     
