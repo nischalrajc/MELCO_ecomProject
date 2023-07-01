@@ -109,15 +109,15 @@
     </div>
     <div class="row">
          {{#if (eq deliveryProducts.deliveryStatus "Delivered")}}
-        <button onclick="returnOrder('{{userOrder._id}}')" class="btn-one">Return Order</button>
+        <button onclick="returnOrder('{{deliveryProducts._id}}')" class="btn-one">Return Order</button>
         {{/if}}
 
          {{#if (eq deliveryProducts.deliveryStatus "Pending")}}
-        <button onclick="CancelOrder('{{userOrder._id}}')" class="btn-one">Cancel Order</button>
+        <button onclick="CancelOrder('{{deliveryProducts._id}}')" class="btn-one">Cancel Order</button>
         {{/if}}
 
         {{#if (eq deliveryProducts.deliveryStatus "Shipped")}}
-        <button onclick="CancelOrder('{{userOrder._id}}')" class="btn-one">Cancel Order</button>
+        <button onclick="CancelOrder('{{deliveryProducts._id}}')" class="btn-one">Cancel Order</button>
         {{/if}}
     </div>
 </div>  
@@ -172,7 +172,7 @@
 
     <script>
         function CancelOrder(id) {
-          
+         
             Swal.fire({
                 title: 'Cancel Order',
                 showCancelButton: true,

@@ -150,6 +150,7 @@ const postSignup = async (req, res) => {
       const mob=req.session.user.phonenumber;
       let response = await client.verify.v2.services(verifySid ).verificationChecks.create({ to: `+91${mob}`, code: otp })
       if(response.status==='approved'){
+        console.log('OTP successfully verified!'); // Add this line to check if this block is executed
           const salt = await bcrypt.genSalt(10);
           const hashedPassword = await bcrypt.hash(req.session.user.password, salt);
 
@@ -161,9 +162,8 @@ const postSignup = async (req, res) => {
           blocked:false
         });
         await user.save();  
-
         req.session.logedin=true;
-        res.redirect('/')
+        res.redirect('/login')
       }else{
         console.log("otp validation failed")
         otperr=true
@@ -576,8 +576,15 @@ const verifypayment =(req,res)=>{
   const OrderCancel=async(req,res)=>{
     try{
       const id=req.query.id
+      const orderdetail=await order.findOne({_id:id})
       await order.updateOne({_id:id},{deliveryStatus:"cancelled"})
       const stockUpdate=userhelper.stockUpdate(id)
+      console.log(orderdetail,"pppppp")
+
+      if(orderdetail.paymentMethode=="Razor Pay"){
+        const updateWallet=await userhelper.updateWallet(req.session.user._id,orderdetail.totalamount)
+      }
+      
       res.json({status:true})
     }catch(err){
       console.log("error:",err)
@@ -831,6 +838,7 @@ const resendOtp = async (req, res) => {
       
       let deliveryProducts=await userhelper.deliveryProductsDetails(orderId)
       deliveryProducts=deliveryProducts[0]
+     
       res.render('user/orderDetails',{logedin:true,deliveryProducts})
     }catch(err){
       console.log("error:",err)
@@ -869,6 +877,8 @@ const resendOtp = async (req, res) => {
       console.log("error:",err)
     }
   }
+
+
   
 
   
