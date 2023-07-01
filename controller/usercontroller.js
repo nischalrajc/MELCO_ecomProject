@@ -12,7 +12,6 @@ const products=require('../model/products');
 const Cart=require('../model/cart');
 const Address=require('../model/address');
 const Order=require('../model/orders');
-// const ObjectId = mongoose.Types.ObjectId
 const Products = require("../model/products");
 const order = require("../model/orders");
 const User = require("../model/userinfo");
@@ -515,7 +514,7 @@ const verifypayment =(req,res)=>{
 
   const insertAddress=async(req,res)=>{
     try{
-      console.log(req.body)
+     
       const address=await Address.findOne({user:req.session.user._id})
       if(address){
         const pushAddress=await userhelper.pushAddress(req.body,address)
@@ -549,7 +548,7 @@ const verifypayment =(req,res)=>{
     try{
       const userId=req.session.user._id
       const Orders = await Order.find({ user: userId }).sort({ orderDate: -1 });
-      console.log(Orders,"uuuuuuuu")
+      
       const userDetail=await User.findOne({_id:userId})
       const cartCount=await userhelper.cartCount(userId)
       const orderCount=await userhelper.OrderCount(userId)
