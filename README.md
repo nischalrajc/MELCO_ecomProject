@@ -80,7 +80,7 @@ git clone git clone https://github.com/nischalrajc/MELCO_ecomProject.git
 2. Navigate to the project directory:
 
 ```bash
-cd fashion-apparel-ecommerce
+cd MELCO_ecomProject
 ```
 
 
